@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fragment_navi_info"
+        android:icon="@drawable/ic_menu_info_stroke"
+        android:title="의료정보"
+        android:enabled="true"
+        />
+
+    <item
+        android:id="@+id/fragment_navi_check"
+        android:icon="@drawable/ic_menu_check_stroke"
+        android:title="건강체크"
+        android:enabled="true"
+        />
+
+    <item
+    android:id="@+id/fragment_navi_home"
+    android:icon="@drawable/ic_menu_home_stroke"
+    android:title="홈"
+    android:enabled="true"
+    />
+    <item
+        android:id="@+id/fragment_navi_map"
+        android:icon="@drawable/ic_menu_map_stroke"
+        android:title="병원/약국"
+        android:enabled="true"
+        />
+    <item
+        android:id="@+id/fragment_navi_device"
+        android:icon="@drawable/ic_menu_device_stroke"
+        android:title="스마트약통"
+        android:enabled="true"
+        />
+</menu>

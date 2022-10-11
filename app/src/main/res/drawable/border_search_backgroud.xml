@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <stroke android:width = "3dp" android:color = "#000000"/>
+            <corners
+                android:bottomRightRadius="10dp"
+                android:bottomLeftRadius="10dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp"/>
+        </shape>
+    </item>
+
+    <item
+        android:bottom="3dp"
+        android:left="3dp"
+        android:right="3dp"
+        android:top="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/>
+            <corners
+                android:bottomRightRadius="10dp"
+                android:bottomLeftRadius="10dp"
+                android:topLeftRadius="10dp"
+                android:topRightRadius="10dp"/>
+        </shape>
+    </item>
+</layer-list>
+
+<!--
+위 item의 stroke 속성인 android:color는 테두리의 색상이고,
+아랫쪽 item의 android:color는 채우기 색이다.
+
+둘 다 둥근 모양을 유지하기 위해서는 corners라는 태그를 내부에 삽입해야 한다.
+
+각 속성을 통해 각 위치의 곡률을 설정할 수 있다.
+dp가 올라갈 수록 둥근 정도가 커진다.
+ -->

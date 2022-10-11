@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="410dp"
+        android:layout_height="640dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/medicine_add_page"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="15dp"
+                android:text="복약 관리"
+                android:textColor="#000"
+                android:textSize="45sp"
+                android:textStyle="bold"/>
+
+
+            <!--약물이름 작성 페이지-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/medicine_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="약물 이름"
+                    android:textSize="35sp"
+                    android:textColor="#000"
+                    android:layout_marginLeft="35dp"/>
+
+                <EditText
+                    android:id="@+id/write_medicine_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="125dp"
+                    android:hint="타이레놀" />
+            </LinearLayout>
+            <!--복용시간 입력-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/medicine_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="35dp"
+                    android:text="복용 시간"
+                    android:textColor="#000"
+                    android:textSize="35sp" />
+
+                <!--이거 왜 안뜨지,,? 좀 더 알아보고 넣기..-->
+                <Switch
+                    android:id="@+id/medicine_onoff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="200dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            <!-- 복용시간 타임피커 -->
+            <TimePicker
+                android:id="@+id/medicine_timepicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+                android:timePickerMode="spinner"/>
+            <!--버튼 모양 추후 수정-->
+            <Button
+                android:id="@+id/time_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="#f5f5f5"
+                android:text="+"
+                android:textColor="#000"
+                android:textSize="30sp"/>
+
+            <!--반복 요일 선택-->
+            <TextView
+                android:id="@+id/medicine_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="반복 요일 선택"
+                android:textSize="35sp"
+                android:textColor="#000"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"/>
+
+            <!--요일 선택하는 버튼 비워둠 나중에 넣기-->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginTop="15dp"
+                android:text="요일 선택 부분(추후 넣을 예정)"/>
+
+            <!--복용 수량-->
+            <TextView
+                android:id="@+id/medicine_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이 시간에 복용할 수량"
+                android:textSize="35sp"
+                android:textColor="#000"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginTop="25dp"/>
+            <!--숫자 증감 만들기 위한 레이아웃-->
+            <!--증감 카운트는 자바로 연결-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="15dp">
+                <Button
+                    android:id="@+id/count_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"
+                    android:textColor="#000"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#f5f5f5"/>
+
+                <TextView
+                    android:id="@+id/count_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="   0   "
+                    android:textColor="#000"
+                    android:textSize="30sp"
+                    android:textStyle="bold"/>
+
+                <Button
+                    android:id="@+id/count_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textColor="#000"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#f5f5f5"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/medicine_del"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginStart="25dp"
+        android:text="약물 삭제"
+        android:backgroundTint="#fff"
+        android:textColor="#ff0000"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/medicine_add"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/medicine_add"
+        android:layout_width="170dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="25dp"
+        android:text="약물 등록"
+        android:backgroundTint="#408F40"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

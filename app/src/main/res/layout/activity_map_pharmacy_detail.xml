@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:background="#EEEEEE"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".map.pharmacy.MapPharmacyDetailActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+             android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                <View
+                    android:id="@+id/View222222"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="#AAAAAA"/>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/linearLayout34"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/pharmacy_detail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="닥터약국"
+                    android:layout_marginVertical="10dp"
+                    android:textSize="30sp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/pharmacy_detail_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="경기 성남시 중원구"
+                    android:textSize="18sp"
+                    android:layout_margin="5dp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/pharmacy_detail_parking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주차 가능(유료)"
+                    android:textSize="18sp"
+                    android:layout_margin="5dp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/pharmacy_detail_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="월요일 09:00 ~ 20:00  V"
+                    android:textSize="18sp"
+                    android:layout_margin="5dp"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/pharmacy_detail_url"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="http://www.naver.com/"
+                    android:textSize="18sp"
+                    android:layout_margin="5dp"
+                    android:textColor="#0099FF"/>
+
+                <TextView
+                    android:id="@+id/pharmacy_detail_tel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="031-1234-5678"
+                    android:textSize="18sp"
+                    android:layout_margin="5dp"
+                    android:textColor="#0099FF"/>
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btnFindWayPharmacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/linearLayout34"
+                app:layout_constraintTop_toTopOf="@+id/linearLayout34"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="300dp"
+                android:text="길찾기" />
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/linearLayout34"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                android:layout_marginTop="15dp">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/textView36"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="3.8 점"-->
+<!--                    android:textSize="30sp"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"/>-->
+<!--    -->
+<!--                <RatingBar-->
+<!--                    android:id="@+id/ratingBar"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintStart_toEndOf="@id/textView36" />-->
+<!--    -->
+<!--                <TextView-->
+<!--                    android:id="@+id/textView37"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="23"-->
+<!--                    android:textSize="30sp"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"/>-->
+<!--    -->
+<!--    &lt;!&ndash;                <GridLayout&ndash;&gt;-->
+<!--    &lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--    &lt;!&ndash;                    android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                    app:layout_constraintTop_toBottomOf="textView36"&ndash;&gt;-->
+<!--    &lt;!&ndash;                    app:layout_constraintStart_toStartOf="parent">&ndash;&gt;-->
+<!--    -->
+<!--    &lt;!&ndash;                    <ImageView&ndash;&gt;-->
+<!--    &lt;!&ndash;                        android:id="@+id/imageView3"&ndash;&gt;-->
+<!--    &lt;!&ndash;                        android:layout_width="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                        android:layout_height="wrap_content"&ndash;&gt;-->
+<!--    &lt;!&ndash;                        app:srcCompat="@drawable/ic_launcher_background" />&ndash;&gt;-->
+<!--    &lt;!&ndash;                </GridLayout>&ndash;&gt;-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>

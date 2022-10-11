@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".map.hospital.MapHospitalListActivity">
+
+    <EditText
+        android:id="@+id/hospital_list_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/border_search_backgroud"
+        android:ems="10"
+        android:hint="병원명 또는 주소를 입력하세요"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--    옵션 메뉴로 필터 구현 예정-->
+    <TextView
+        android:id="@+id/hospital_array_list_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:text="지도중심v"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hospital_list_search" />
+
+    <TextView
+        android:id="@+id/hospital_array_list_now"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="거리순v"
+        android:textSize="15sp"
+        android:padding="5dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/hospital_array_list_map"
+        app:layout_constraintTop_toBottomOf="@+id/hospital_list_search" />
+
+    <ToggleButton
+        android:id="@+id/hospital_list_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="영업 중"
+        android:textOff="영업 종료"
+        app:layout_constraintEnd_toStartOf="@+id/hospital_list_toggle_specialist"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/hospital_list_search" />
+
+    <ToggleButton
+        android:id="@+id/hospital_list_toggle_specialist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="전문의진료"
+        android:textOff="전문의아님"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/hospital_list_search" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/hospital_list_recycle"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hospital_array_list_map"/>
+
+    <Button
+        android:id="@+id/to_map_hospital_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="20dp"
+        android:text="지도 보기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
