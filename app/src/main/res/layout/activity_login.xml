@@ -15,7 +15,7 @@
         android:focusableInTouchMode="true">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/logo"
             android:layout_width="161dp"
             android:layout_height="158dp"
             android:layout_marginTop="54dp"
@@ -26,7 +26,7 @@
             app:srcCompat="@drawable/ic_splash_logo" />
 
         <TextView
-            android:id="@+id/tv_content"
+            android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -39,10 +39,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toBottomOf="@+id/logo" />
 
         <EditText
-            android:id="@+id/insert_id"
+            android:id="@+id/user_id"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="50dp"
@@ -59,10 +59,10 @@
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_content" />
+            app:layout_constraintTop_toBottomOf="@+id/app_name" />
 
         <EditText
-            android:id="@+id/insert_password"
+            android:id="@+id/user_password"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginStart="50dp"
@@ -80,19 +80,7 @@
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/insert_id" />
-
-        <!--        <CheckBox-->
-        <!--            android:id="@+id/autoLogin"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginLeft="45dp"-->
-        <!--            android:includeFontPadding="false"-->
-        <!--            android:text="자동로그인"-->
-        <!--            android:textColor="@color/white"-->
-        <!--            android:textSize="15dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/insert_password" />-->
+            app:layout_constraintTop_toBottomOf="@+id/user_id" />
 
         <Button
             android:id="@+id/btn_login"
@@ -109,7 +97,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.177"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/insert_password" />
+            app:layout_constraintTop_toBottomOf="@+id/user_password" />
 
         <Button
             android:id="@+id/btn_join"
@@ -126,7 +114,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.808"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/insert_password" />
+            app:layout_constraintTop_toBottomOf="@+id/user_password" />
+
+        <com.kakao.usermgmt.LoginButton
+            android:id="@+id/kakao_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_join"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
