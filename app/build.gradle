@@ -66,6 +66,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-messaging'
 
+    //파이어베이스 앱 분석
+    implementation 'com.google.firebase:firebase-analytics:21.1.1'
+    //파이어베이스 코어
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    //파이어베이스 인증
+    implementation 'com.google.firebase:firebase-auth:21.0.8'
+    //파이어베이스 인증2
+    implementation 'com.firebaseui:firebase-ui-auth:4.2.1'
+    //글라이드 이미지 로딩
+    implementation 'com.github.bumptech.glide:compiler:4.9.0'
+    //글라이드 이미지 로딩2
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
     //카카오 로그인
     implementation 'com.kakao.sdk:usermgmt:1.30.7'
     //Glide 이미지 로드 라이브러리

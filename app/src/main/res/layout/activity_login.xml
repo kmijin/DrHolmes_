@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="547dp"
+        android:layout_height="wrap_content"
         android:background="@color/drholmes_green"
         android:focusable="true"
         android:focusableInTouchMode="true">
@@ -116,13 +116,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_password" />
 
-        <com.kakao.usermgmt.LoginButton
-            android:id="@+id/kakao_login"
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btn_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_join"/>
+
+        <com.kakao.usermgmt.LoginButton
+            android:id="@+id/kakao_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_google"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
