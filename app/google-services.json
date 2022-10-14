@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "879431503525",
-    "project_id": "drholmestest",
-    "storage_bucket": "drholmestest.appspot.com"
+    "project_number": "854834201343",
+    "firebase_url": "https://drholmes-dc8ca-default-rtdb.firebaseio.com",
+    "project_id": "drholmes-dc8ca",
+    "storage_bucket": "drholmes-dc8ca.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:879431503525:android:bc4591f3cfff711f33c74c",
+        "mobilesdk_app_id": "1:854834201343:android:0737df5a06e19455e242ca",
         "android_client_info": {
           "package_name": "com.pillgood.drholmes"
         }
       },
       "oauth_client": [
         {
-          "client_id": "879431503525-88dgmnu6qb9f3b213rglnk7162kl4sv3.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.pillgood.drholmes",
-            "certificate_hash": "2cfaacbd1895f485d8119af417d4b95ff45bf488"
-          }
-        },
-        {
-          "client_id": "879431503525-jc5eamq0q2rcrbjpes25q2vfdsodhfhi.apps.googleusercontent.com",
+          "client_id": "854834201343-9t1s9dldornru92pnj4dpov0iq7jfiuu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCHAK6qnBfdZJUb89KKNCujkqpDGGmVbXY"
+          "current_key": "AIzaSyC8zOJ57JQ-AYCZjYzOLiOYY0gPLXhQDEs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "879431503525-jc5eamq0q2rcrbjpes25q2vfdsodhfhi.apps.googleusercontent.com",
+              "client_id": "854834201343-9t1s9dldornru92pnj4dpov0iq7jfiuu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

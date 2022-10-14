@@ -40,23 +40,20 @@
 
         <activity android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
-        <activity android:name=".start.JoinActivity"
+        <activity android:name=".start.RegisterActivity"
             android:exported="true">
 
         </activity>
 
         <activity android:name=".start.LoginActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
@@ -72,6 +69,10 @@
         <service android:name=".device.BluetoothLeService" android:enabled="true">
 
         </service>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="e7998a11fa68c523abd472f25fe01e6f" />
 
     </application>
 
