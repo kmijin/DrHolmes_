@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "879431503525",
+    "firebase_url": "https://drholmestest-default-rtdb.firebaseio.com",
     "project_id": "drholmestest",
     "storage_bucket": "drholmestest.appspot.com"
   },
