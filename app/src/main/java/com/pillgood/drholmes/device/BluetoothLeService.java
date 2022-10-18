@@ -60,8 +60,8 @@ public class BluetoothLeService extends Service {
     public final static String EXTRA_DATA =
             "com.example.bluetooth.le.EXTRA_DATA";
 
-    public final static UUID UUID_HM_10 =
-            UUID.fromString(SampleGattAttributes.HM_10);
+    public final static String UUID_IRService = "0101";
+    public final static UUID UUID_IRLevelChar = UUID.fromString("00000202-0000-1000-8000-00805f9b34fb");
 
     private final BluetoothGattCallback mGattCallback = new BluetoothGattCallback() {
         @Override
@@ -117,7 +117,7 @@ public class BluetoothLeService extends Service {
                                  final BluetoothGattCharacteristic characteristic) {
         final Intent intent = new Intent(action);
 
-        if (UUID_HM_10.equals(characteristic.getUuid())) {
+        if (UUID_IRLevelChar.equals(characteristic.getUuid())) {
 //            int flag = characteristic.getProperties();
 //            int format = -1;
 //            if ((flag & 0x01) != 0) {
@@ -138,7 +138,10 @@ public class BluetoothLeService extends Service {
                 for(byte byteChar : data)
                     stringBuilder.append(String.format("%02X ", byteChar));
                 intent.putExtra(EXTRA_DATA, new String(data));
+                Log.i(TAG, "EXTRA DATA in private void broadcastUpdate");
             }
+        } else {
+            Log.i(TAG, "broadcastUpdate / UUID IS WRONG : " + characteristic.getUuid().toString());
         }
         sendBroadcast(intent);
     }
@@ -242,11 +245,15 @@ public class BluetoothLeService extends Service {
         }
         mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
 
-        if (UUID_HM_10.equals(characteristic.getUuid())) {
+        if (UUID_IRService.equals(characteristic.getUuid().toString())) {
             BluetoothGattDescriptor descriptor = characteristic.getDescriptor(
                     UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             mBluetoothGatt.writeDescriptor(descriptor);
+        } else if(UUID_IRLevelChar.equals(characteristic.getUuid())) {
+            readCharacteristic(characteristic);
+        } else {
+            Log.i(TAG, "setCharacteristicNotification / UUID IS WRONG : " + characteristic.getUuid().toString());
         }
     }
 

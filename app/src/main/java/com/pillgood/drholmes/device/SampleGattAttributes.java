@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 public class SampleGattAttributes {
     private static HashMap<String, String> attributes = new HashMap();
-    public static String HM_10 = "0000ffe1-0000-1000-8000-00805f9b34fb";
+    public static String HM_10 = "1010";
     public static String CLIENT_CHARACTERISTIC_CONFIG = "00002902-0000-1000-8000-00805f9b34fb";
 
     static {
