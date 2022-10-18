@@ -11,7 +11,7 @@
         android:layout_width="113dp"
         android:layout_height="121dp"
         android:layout_marginTop="180dp"
-        android:src="@android:drawable/sym_def_app_icon"
+        android:src="@drawable/ic_splash_logo"
         app:flow_horizontalAlign="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
