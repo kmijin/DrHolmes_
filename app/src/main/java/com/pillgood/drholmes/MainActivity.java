@@ -13,6 +13,7 @@ import androidx.core.splashscreen.SplashScreen;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.pillgood.drholmes.check.CheckActivity;
 import com.pillgood.drholmes.device.DeviceActivity;
@@ -104,4 +105,5 @@ public class MainActivity extends AppCompatActivity {
         menu.findItem(R.id.fragment_navi_map).setIcon(R.drawable.ic_menu_map_stroke);
         menu.findItem(R.id.fragment_navi_device).setIcon(R.drawable.ic_menu_device_stroke);
     }
+
 }

@@ -26,6 +26,8 @@ import android.widget.Button;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.pillgood.drholmes.R;
 import com.pillgood.drholmes.api.DeviceAPI;
 import com.pillgood.drholmes.api.device.DeviceClass;
@@ -61,6 +63,12 @@ public class DeviceActivity extends Fragment {
 
     private final String LIST_NAME = "NAME";
     private final String LIST_UUID = "UUID";
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = database.getReference();
+
+    private String[] pillData;
+    private String[] pillTF = new String[2];
 
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
 
@@ -98,9 +106,13 @@ public class DeviceActivity extends Fragment {
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
                 Log.e("SERVICES DISCOVERED", "OK");
+                updateConnectionState("Services are ready");
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
-                displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
-                postDataToSpring(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+                pillData = intent.getStringExtra(BluetoothLeService.EXTRA_DATA).split(" ");
+                pillTF[0] = Integer.parseInt(pillData[0]) > 100 ? "1" : "0";
+                pillTF[1] = Integer.parseInt(pillData[1]) > 100 ? "1" : "0";
+                displayData(pillTF);
+                postDataToDB(pillTF);
                 Log.e("DATA AVAILABLE", "OK");
             }
         }
@@ -133,6 +145,7 @@ public class DeviceActivity extends Fragment {
                         if (mGattCharacteristics != null) {
 //                        final BluetoothGattCharacteristic characteristic =
 //                                mGattCharacteristics.get(groupPosition).get(childPosition);
+                            Log.i(TAG, mGattCharacteristics.toString());
                             final BluetoothGattCharacteristic characteristic =
                                     mGattCharacteristics.get(2).get(0);
                             final int charaProp = characteristic.getProperties();
@@ -169,6 +182,7 @@ public class DeviceActivity extends Fragment {
                 ((TextView) view.findViewById(R.id.device_selected_name)).setText(mDeviceName);
                 Log.e(TAG, getActivity()==null?"null":"not null");
                 Intent gattServiceIntent = new Intent(getActivity(), BluetoothLeService.class);
+                getActivity().bindService(gattServiceIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
                 getActivity().bindService(gattServiceIntent, mServiceConnection, Context.BIND_AUTO_CREATE);
 
                 retrofit = new Retrofit.Builder()
@@ -245,30 +259,17 @@ public class DeviceActivity extends Fragment {
         });
     }
 
-    private void displayData(String data) {
+    private void displayData(String[] data) {
         if (data != null) {
-            mDataView.setText(data);
+            mDataView.setText("01: " + data[0] + " / 02: " + data[1]);
         }
     }
 
-    private void postDataToSpring(String data) {
+    private void postDataToDB(String[] data) {
         if (data != null) {
-            String id, state;
-            id = data.substring(0,1);
-            state = data.substring(1);
-            DeviceClass deviceClass = new DeviceClass(id, state);
-            deviceAPI.postData(deviceClass).enqueue(new Callback<DeviceClass>() {
-                @Override
-                public void onResponse(Call<DeviceClass> call, Response<DeviceClass> response) {
-                    Log.d("deviceAPI", "Data send success");
-                    Log.d("deviceAPI", id+state);
-                }
+            databaseReference.child("drholmesDevice").child("01").push().setValue(data[0]);
+            databaseReference.child("drholmesDevice").child("02").push().setValue(data[1]);
 
-                @Override
-                public void onFailure(Call<DeviceClass> call, Throwable t) {
-                    Log.e("deviceAPI", "ERROR=" + t.toString());
-                }
-            });
         }
     }
 

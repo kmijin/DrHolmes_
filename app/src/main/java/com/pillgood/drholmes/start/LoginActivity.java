@@ -1,7 +1,12 @@
 package com.pillgood.drholmes.start;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +34,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.pillgood.drholmes.MainActivity;
 import com.pillgood.drholmes.R;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
     //파이어베이스 인증
@@ -50,6 +61,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+//        getHashKey();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("drholmesUser");
@@ -114,6 +127,28 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         });
     }
+
+//    private void getHashKey() {
+//        PackageInfo packageInfo = null;
+//        try{
+//            packageInfo = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
+//        }catch (PackageManager.NameNotFoundException e){
+//            e.printStackTrace();
+//        }
+//        if(packageInfo == null)
+//            Log.e("KeyHash", "KeyHash: null");
+//
+//        for (Signature signature : packageInfo.signatures) {
+//            try{
+//                MessageDigest md = MessageDigest.getInstance("SHA");
+//                md.update(signature.toByteArray());
+//                Log.e("KeyHash", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//                //로그로 확인
+//            } catch (NoSuchAlgorithmException e) {
+//                Log.e("KeyHash", "Unable to get MessageDigest.signature = " + signature, e);
+//            }
+//        }
+//    }
 
     // 구글 로그인 인증을 요청했을 때 결과값을 되돌려 받는 곳
     @Override
