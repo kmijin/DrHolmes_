@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "854834201343-5m509lkhdude15gkovi8esuhmkm1a72p.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.pillgood.drholmes",
-            "certificate_hash": "dbba39a2a2ccaa3518c6edbddd024ab61e85fe7b"
-          }
-        },
-        {
           "client_id": "854834201343-9t1s9dldornru92pnj4dpov0iq7jfiuu.apps.googleusercontent.com",
           "client_type": 3
         }
