@@ -34,8 +34,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.pillgood.drholmes.MainActivity;
 import com.pillgood.drholmes.R;
 
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

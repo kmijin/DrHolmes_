@@ -88,10 +88,12 @@ dependencies {
     //카카오 SDK 모듈 설정
     implementation "com.kakao.sdk:v2-user:2.4.2" // 카카오 로그인
     //Glide 이미지 로드 라이브러리
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+//    implementation 'com.github.bumptech.glide:glide:4.8.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     //Google 로그인
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
     //페이스북 로그인
-    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+//    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
 }
