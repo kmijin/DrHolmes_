@@ -1,5 +1,6 @@
 package com.pillgood.drholmes.noti;
 
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,77 +26,125 @@ import com.pillgood.drholmes.MainActivity;
 import com.pillgood.drholmes.R;
 
 public class MyFirebaseMessaging extends FirebaseMessagingService {
-    public MyFirebaseMessaging() {
-        super();
-        Task<String> token = FirebaseMessaging.getInstance().getToken();
-        token.addOnCompleteListener(new OnCompleteListener<String>() {
-            @Override
-            public void onComplete(@NonNull Task<String> task) {
-                if(task.isSuccessful()){
-                    Log.d("FCM Token", task.getResult());
-                }
-            }
-        });
-    }
-    
-    
 
-    private RemoteViews getCustomDesign(String title, String message) {
-        RemoteViews remoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.activity_noti_item);
-        remoteViews.setTextViewText(R.id.noti_title, title);
-        remoteViews.setTextViewText(R.id.noti_message, message);
-        remoteViews.setImageViewResource(R.id.logo, R.drawable.ic_splash_logo);
-        return remoteViews;
-    }
 
-    public void showNotification(String title, String message) {
-        //팝업 터치시 이동할 액티비티를 지정합니다.
-        Intent intent = new Intent(this, NotiActivity.class);
-        //알림 채널 아이디 : 본인 하고싶으신대로...
-        String channel_id = "CHN_ID";
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        //기본 사운드로 알림음 설정. 커스텀하려면 소리 파일의 uri 입력
-        Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), channel_id)
-                .setSmallIcon(R.drawable.ic_splash_logo)
-                .setSound(uri)
-                .setAutoCancel(true)
-                .setVibrate(new long[]{1000, 1000, 1000}) //알림시 진동 설정 : 1초 진동, 1초 쉬고, 1초 진동
-                .setOnlyAlertOnce(true) //동일한 알림은 한번만.. : 확인 하면 다시 울림
-                .setContentIntent(pendingIntent);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) { //안드로이드 버전이 커스텀 알림을 불러올 수 있는 버전이면
-            //커스텀 레이아웃 호출
-            builder = builder.setContent(getCustomDesign(title, message));
-        } else { //아니면 기본 레이아웃 호출
-            builder = builder.setContentTitle(title)
-                    .setContentText(message)
-                    .setSmallIcon(R.drawable.ic_splash_logo); //커스텀 레이아웃에 사용된 로고 파일과 동일하게..
-        }
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        //알림 채널이 필요한 안드로이드 버전을 위한 코드
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = new NotificationChannel(channel_id, "CHN_NAME", NotificationManager.IMPORTANCE_HIGH);
-            notificationChannel.setSound(uri, null);
-            notificationManager.createNotificationChannel(notificationChannel);
-        }
-        //알림 표시 !
-        notificationManager.notify(0, builder.build());
-    }
-
-    @Override
-    public void onMessageReceived(@NonNull RemoteMessage message) {
-        if (message.getData().size() > 0) {
-            showNotification(message.getData().get("title"), message.getData().get("body"));
-        }
-    }
-
+    //    @Override
+//    public void onMessageReceived(@NonNull RemoteMessage message) {
+//        super.onMessageReceived(message);
+//
+//        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+//
+//        NotificationCompat.Builder builder = null;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            if (notificationManager.getNotificationChannel(CHANNEL_ID) == null) {
+//                NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
+//                notificationManager.createNotificationChannel(channel);
+//            }
+//            builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
+//        }else {
+//            builder = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_NAME);
+//        }
+//
+//        String title = message.getNotification().getTitle();
+//        String body = message.getNotification().getBody();
+//
+//        builder.setContentTitle(title)
+//                .setContentText(body)
+//                .setSmallIcon(R.drawable.ic_launcher_background);
+//
+//        Notification notification = builder.build();
+//        notificationManager.notify(1, notification);
+//    }
+//
     @Override
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
     }
 
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+    }
 
+    private void sendNotification(String messageBody) {
+        //알림 클릭시 실행될 액티비티 (PendingIntent)
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                PendingIntent.FLAG_ONE_SHOT);
+
+        String channelId = getString(R.string.default_notification_channel_id);
+        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this, channelId)
+                        .setSmallIcon(R.drawable.ic_splash_logo)
+                        .setContentTitle(getString(R.string.fcm_message))
+                        .setContentText(messageBody)
+                        .setAutoCancel(true)
+                        .setSound(defaultSoundUri)
+                        .setContentIntent(pendingIntent);
+
+        //노티 메니저로 알림 팝업 띄우기
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // 오래오 버전 이상부터 channelId 값이 필수가 됨
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(channelId,
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+    }
+//
+//    @Override
+//    public void onNewToken(String s) {
+//        Log.e("token?", s);
+//        super.onNewToken(s);
+//    }
+//
+//    private void makeNotification(RemoteMessage remoteMessage) {
+//        try {
+//            int notificationId = -1;
+//            Context mContext = getApplicationContext();
+//
+//            Intent intent = new Intent(this, MainActivity.class);
+//            intent.setAction(Intent.ACTION_MAIN);
+//            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//
+//            String title = remoteMessage.getData().get("title");
+//            String message = remoteMessage.getData().get("body");
+//            String topic = remoteMessage.getFrom();
+//
+//            NotificationManager notificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
+//            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "10001");
+//            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+//                builder.setVibrate(new long[]{200, 100, 200});
+//            }
+//            builder.setSmallIcon(R.drawable.ic_splash_logo)
+//                    .setAutoCancel(true)
+//                    .setDefaults(Notification.DEFAULT_SOUND)
+//                    .setContentTitle(title)
+//                    .setContentText(message);
+//
+//            if (topic.equals(topics[0])) {
+//                notificationId = 0;
+//            } else if (topic.equals(topics[1])) {
+//                notificationId = 1;
+//            }
+//
+//            if (notificationId >= 0) {
+//                PendingIntent pendingIntent = PendingIntent.getActivity(this, notificationId, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+//                builder.setContentIntent(pendingIntent);
+//                notificationManager.notify(notificationId, builder.build());
+//            }
+//
+//        } catch (NullPointerException nullException) {
+//            Toast.makeText(getApplicationContext(), "알림에 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+//            Log.e("error Notify", nullException.toString());
+//        }
+//
+//    }
 }

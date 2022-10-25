@@ -3,8 +3,6 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-apply plugin: 'com.google.gms.google-services'
-
 android {
     compileSdk 32
 
@@ -65,10 +63,10 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.4.1')
     implementation 'com.google.firebase:firebase-messaging:23.1.0'
     implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-auth'
-    implementation 'com.google.firebase:firebase-messaging:23.0.8'
-    implementation 'com.google.android.gms:play-services-auth:20.3.0'
+    implementation 'com.google.firebase:firebase-messaging'
 
+    //noinspection GradleCompatible
+    implementation "com.android.support:support-compat:28.0.0"
 
     //파이어베이스 앱 분석
     implementation 'com.google.firebase:firebase-analytics:21.1.1'
@@ -85,15 +83,15 @@ dependencies {
 
     //카카오 로그인
     implementation 'com.kakao.sdk:usermgmt:1.30.7'
-    //카카오 SDK 모듈 설정
-    implementation "com.kakao.sdk:v2-user:2.4.2" // 카카오 로그인
     //Glide 이미지 로드 라이브러리
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-//    implementation 'com.github.bumptech.glide:glide:4.8.0'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     //Google 로그인
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
-    //페이스북 로그인
-//    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+
+
+
 }
+
+apply plugin: 'com.google.gms.google-services'
+
