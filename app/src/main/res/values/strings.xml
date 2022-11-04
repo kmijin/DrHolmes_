@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">DrHolmes</string>
-    <string name="msg_token_fmt" translatable="false">토큰 : %s</string>
+    <string name="default_notification_channel_id" />
+    <string name="fcm_message" />
+    <!--    -->
 </resources>
