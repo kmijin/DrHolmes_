@@ -98,42 +98,6 @@
                 android:layout_marginEnd="35dp"
                 android:text="   19:00         루카스트    1 정"
                 android:textSize="23dp" />
-
-            <TextView
-                android:id="@+id/calendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="25dp"
-                android:text="진료 일정"
-                android:textColor="#000"
-                android:textSize="45sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/medicine3" />
-            <!--현재는 캘린더 뷰 사용했지만, DatePicker 찾아보고 사용할 예정-->
-            <CalendarView
-                android:id="@+id/calendarView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="35dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calendar" />
-
-            <TextView
-                android:id="@+id/schedule"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="35dp"
-                android:text="4월 25일 \n 11:45 - 암검진 \n 4월30일 \n 15:20 - 수면 내시경"
-                android:textSize="35sp"
-                android:textStyle="bold" />
-
         </LinearLayout>
     </ScrollView>
 

@@ -1,4 +1,4 @@
-package com.pillgood.drholmes.info.pill;
+package com.pillgood.drholmes.info;
 
 public class Pill {
     String icon;
