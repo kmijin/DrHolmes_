@@ -9,13 +9,6 @@
         />
 
     <item
-        android:id="@+id/fragment_navi_check"
-        android:icon="@drawable/ic_menu_check_stroke"
-        android:title="건강체크"
-        android:enabled="true"
-        />
-
-    <item
     android:id="@+id/fragment_navi_home"
     android:icon="@drawable/ic_menu_home_stroke"
     android:title="홈"

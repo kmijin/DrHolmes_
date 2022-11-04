@@ -1,4 +1,4 @@
-package com.pillgood.drholmes.info.pill;
+package com.pillgood.drholmes.info;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,12 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pillgood.drholmes.R;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class PillAdapter extends RecyclerView.Adapter<PillAdapter.ViewHolder> {
