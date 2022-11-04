@@ -6,24 +6,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".info.InfoActivity">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs_info"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/drholmes_green_light"
-        app:tabTextColor="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_tab_info"
-        app:layout_constraintVertical_weight="1"/>
+    <EditText
+        android:id="@+id/pill_search"
+        android:layout_width="371dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="검색"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
 
-    <FrameLayout
-        android:id="@+id/fragment_tab_info"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintVertical_weight="13"
-        app:layout_constraintTop_toBottomOf="@+id/tabs_info"
-        app:layout_constraintBottom_toBottomOf="parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pill_list_recycle"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pill_search"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
