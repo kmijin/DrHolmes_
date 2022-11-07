@@ -9,6 +9,9 @@ public class UserAccount {
     private String idToken; //Firebase Uid(고유 토큰정보)
     private String emailId;
     private String password;
+    private String name;
+    private String birth;
+
 
     public UserAccount() { }
 
@@ -34,5 +37,21 @@ public class UserAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
     }
 }

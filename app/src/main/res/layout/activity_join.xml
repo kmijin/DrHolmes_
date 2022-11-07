@@ -43,11 +43,26 @@
         android:inputType="text"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/user_email"
+        app:layout_constraintBottom_toTopOf="@+id/user_birth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_name" />
 
+
+    <EditText
+        android:id="@+id/user_birth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="84dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="생년월일"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/user_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:flow_horizontalAlign="center"/>
 
     <EditText
         android:id="@+id/user_email"
@@ -60,26 +75,10 @@
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/user_name"
+        app:layout_constraintTop_toBottomOf="@id/user_birth"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:flow_horizontalAlign="center"/>
-
-<!--    <EditText-->
-<!--        android:id="@+id/join_pwdck"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:ems="10"-->
-<!--        android:hint="비밀번호 확인"-->
-<!--        android:inputType="textPassword"-->
-<!--        android:textColorHint="@color/white"-->
-<!--        android:textColor="@color/white"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/join_pwd"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:flow_horizontalAlign="center"/>-->
 
     <EditText
         android:id="@+id/user_pwd"

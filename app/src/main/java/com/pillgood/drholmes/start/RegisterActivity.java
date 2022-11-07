@@ -26,7 +26,9 @@ public class RegisterActivity extends AppCompatActivity {
     //실시간 데이터베이스
     private DatabaseReference mDatabaseRef;
     // 회원가입 입력 필드
-    private EditText eEtEmail, mEtPwd;
+    private EditText eEtEmail;
+    private EditText mEtPwd;
+    private EditText mName, mBirth;
     // 버튼
     private Button mBtnRegister, mBtnCancel;
 
@@ -40,18 +42,24 @@ public class RegisterActivity extends AppCompatActivity {
 
         eEtEmail = findViewById(R.id.user_email);
         mEtPwd = findViewById(R.id.user_pwd);
+        mName = findViewById(R.id.user_name);
+        mBirth = findViewById(R.id.user_birth);
         mBtnRegister = findViewById(R.id.btn_register);
         mBtnCancel = findViewById(R.id.btn_cancel);
 
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String name = mName.getText().toString().trim();
+                final String birth = mBirth.getText().toString().trim();
+
                 // 회원가입 처리 시작
                 String strEmail = eEtEmail.getText().toString();
                 String strPwd = mEtPwd.getText().toString();
 
                 //Firebase Auth 진행
-                mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd)
+                        .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -60,6 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
                             account.setIdToken(firebaseUser.getUid());
                             account.setEmailId(firebaseUser.getEmail());
                             account.setPassword(strPwd);
+                            account.setName(name);
+                            account.setBirth(birth);
 
                             //setValue : database에 insert (삽입)행위
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
