@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.pillgood.drholmes.MainActivity;
@@ -19,6 +20,7 @@ import com.pillgood.drholmes.start.LoginActivity;
 public class HomeActivity extends Fragment {
 
     private Button btn_logout;
+//    private ImageButton btn_pilladd;
     private FirebaseAuth mFirebaseAuth;
 
     @Override
@@ -38,6 +40,16 @@ public class HomeActivity extends Fragment {
                 startActivity(intent);
             }
         });
+
+
+//        btn_pilladd = view.findViewById(R.id.pill_add);
+//        btn_pilladd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), PillAddActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         return view;
     }
 }

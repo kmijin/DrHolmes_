@@ -25,7 +25,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <Button
                 android:id="@+id/btn_logout"
                 android:layout_width="50px"
@@ -66,6 +65,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/health_tip" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
             <TextView
                 android:id="@+id/taking_medicine"
                 android:layout_width="wrap_content"
@@ -78,6 +81,17 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/today_tip" />
+
+                <ImageButton
+                    android:id="@+id/pill_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="43dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_add" />
+            </LinearLayout>
             <!--복용중인 약 -> 리스트 뷰로 만들기-->
             <CheckBox
                 android:id="@+id/medicine1"
