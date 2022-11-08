@@ -26,6 +26,15 @@
             android:orientation="vertical">
 
 
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="50px"
+                android:layout_height="50px"
+                android:text="Logout"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/health_tip"/>
+
             <TextView
                 android:id="@+id/health_tip"
                 android:layout_width="wrap_content"
@@ -102,14 +111,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="logout"
-        app2:layout_constraintBottom_toBottomOf="parent"
-        app2:layout_constraintEnd_toEndOf="parent"
-        app2:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
