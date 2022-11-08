@@ -98,6 +98,7 @@
                 android:layout_marginEnd="35dp"
                 android:text="   19:00         루카스트    1 정"
                 android:textSize="23dp" />
+
         </LinearLayout>
     </ScrollView>
 

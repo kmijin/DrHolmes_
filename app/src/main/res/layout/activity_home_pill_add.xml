@@ -85,37 +85,37 @@
                 android:layout_gravity="center_horizontal"
                 android:timePickerMode="spinner"/>
             <!--버튼 모양 추후 수정-->
-            <Button
-                android:id="@+id/time_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:backgroundTint="#f5f5f5"
-                android:text="+"
-                android:textColor="#000"
-                android:textSize="30sp"/>
+<!--            <Button-->
+<!--                android:id="@+id/time_plus"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:backgroundTint="#f5f5f5"-->
+<!--                android:text="+"-->
+<!--                android:textColor="#000"-->
+<!--                android:textSize="30sp"/>-->
 
             <!--반복 요일 선택-->
-            <TextView
-                android:id="@+id/medicine_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="반복 요일 선택"
-                android:textSize="35sp"
-                android:textColor="#000"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"/>
+<!--            <TextView-->
+<!--                android:id="@+id/medicine_date"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="반복 요일 선택"-->
+<!--                android:textSize="35sp"-->
+<!--                android:textColor="#000"-->
+<!--                android:layout_marginTop="25dp"-->
+<!--                android:layout_marginStart="35dp"-->
+<!--                android:layout_marginEnd="35dp"/>-->
 
-            <!--요일 선택하는 버튼 비워둠 나중에 넣기-->
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="35dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginTop="15dp"
-                android:text="요일 선택 부분(추후 넣을 예정)"/>
+<!--            &lt;!&ndash;요일 선택하는 버튼 비워둠 나중에 넣기&ndash;&gt;-->
+<!--            <Button-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginStart="35dp"-->
+<!--                android:layout_marginEnd="35dp"-->
+<!--                android:layout_marginTop="15dp"-->
+<!--                android:text="요일 선택 부분(추후 넣을 예정)"/>-->
 
             <!--복용 수량-->
             <TextView
