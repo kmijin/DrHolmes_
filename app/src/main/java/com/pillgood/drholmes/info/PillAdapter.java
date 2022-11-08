@@ -71,6 +71,10 @@ public class PillAdapter extends RecyclerView.Adapter<PillAdapter.ViewHolder> {
         this.items = items;
     }
 
+    public void clearItems() {
+        items.clear();
+    };
+
     public Pill getItem(int position) {
         return  items.get(position);
     }

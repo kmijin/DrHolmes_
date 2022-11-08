@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".map.hospital.MapHospitalListActivity">
 
-    <EditText
+    <SearchView
         android:id="@+id/hospital_list_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,11 +15,10 @@
         android:ems="10"
         android:hint="병원명 또는 주소를 입력하세요"
         android:inputType="text"
-        android:padding="10dp"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:iconifiedByDefault="false" />
 
 <!--    옵션 메뉴로 필터 구현 예정-->
     <TextView

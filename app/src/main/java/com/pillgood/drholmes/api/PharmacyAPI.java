@@ -12,4 +12,8 @@ public interface PharmacyAPI {
 
     @GET(getPharmacy)
     Call<ResponseClass> getPharmacyInfo(@Query("serviceKey") String serviceKey);
+
+    @GET(getPharmacy)
+    Call<ResponseClass> getPharmacyInfo(@Query("serviceKey") String serviceKey,
+                                        @Query("emdongNm") String emdongNm);
 }

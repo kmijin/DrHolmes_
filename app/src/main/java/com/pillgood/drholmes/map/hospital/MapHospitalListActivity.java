@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +46,9 @@ public class MapHospitalListActivity extends Fragment {
     String serviceKey_origin = "J%2FS0JBdWnrQa9KR69M9AJHWjQwTch0%2F20l8%2BdpQ5wH8sMuKGfYlihZjIxwDCPjVBF9JUeaTeJr1xEhbDvcL%2BWw%3D%3D";
     String serviceKey;
 
+    SearchView searchView;
+    SearchView.OnQueryTextListener searchViewTextListener;
+
     {
         try {
             serviceKey = URLDecoder.decode(serviceKey_origin, "UTF-8");
@@ -60,10 +64,11 @@ public class MapHospitalListActivity extends Fragment {
 
         mapButton = (Button) view.findViewById(R.id.to_map_hospital_button);
 
+        searchView = view.findViewById(R.id.hospital_list_search);
+
         hospitalActivity = new MapHospitalActivity();
 
         fragmentManager = getParentFragmentManager();
-
 
         cl = new View.OnClickListener() {
             @Override
@@ -111,7 +116,7 @@ public class MapHospitalListActivity extends Fragment {
                     .build();
             service = retrofit.create(HospitalAPI.class);
 
-            service.getPharmacyInfo(serviceKey).enqueue(new Callback<ResponseClass>() {
+            service.getHospitalInfo(serviceKey).enqueue(new Callback<ResponseClass>() {
                 @Override
                 public void onResponse(Call<ResponseClass> call, Response<ResponseClass> response) {
                     if (response.isSuccessful()) {
@@ -132,6 +137,45 @@ public class MapHospitalListActivity extends Fragment {
         } catch (Exception e) {
             Log.e("병원 Exception", e.getMessage());
         }
+
+        searchViewTextListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                adapter.clearItems();
+                adapter.notifyDataSetChanged();
+
+                service.getHospitalInfo(serviceKey, s).enqueue(new Callback<ResponseClass>() {
+                    @Override
+                    public void onResponse(Call<ResponseClass> call, Response<ResponseClass> response) {
+                        if (response.isSuccessful()) {
+                            Log.e("병원", "response=" + response.code() + " Total=" + response.body().getBody().getTotalCount());
+                            for(ItemClass item : response.body().getBody().getItems().getItem()) {
+                                Log.e("병원", item.getYadmNm());
+                                adapter.addItem(new Hospital(item.getYadmNm(), item.getClCdNm(),item.getAddr(), item.getTelno(), item.getXPos(), item.getYPos()));
+                                adapter.notifyItemInserted(adapter.getItemCount());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseClass> call, Throwable t) {
+                        Log.e("병원", "ERROR=" + t.toString());
+                    }
+                });
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        };
+
+        searchView.setOnQueryTextListener(searchViewTextListener);
+
+
         return view;
     }
 }

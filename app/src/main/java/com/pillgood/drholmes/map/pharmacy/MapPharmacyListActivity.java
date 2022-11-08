@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.pillgood.drholmes.R;
 import com.pillgood.drholmes.api.PharmacyAPI;
 import com.pillgood.drholmes.api.pharmacy.ItemClass;
 import com.pillgood.drholmes.api.pharmacy.ResponseClass;
+import com.pillgood.drholmes.map.hospital.Hospital;
 import com.tickaroo.tikxml.TikXml;
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory;
 
@@ -45,6 +47,9 @@ public class MapPharmacyListActivity extends Fragment {
     String serviceKey_origin = "J%2FS0JBdWnrQa9KR69M9AJHWjQwTch0%2F20l8%2BdpQ5wH8sMuKGfYlihZjIxwDCPjVBF9JUeaTeJr1xEhbDvcL%2BWw%3D%3D";
     String serviceKey;
 
+    SearchView searchView;
+    SearchView.OnQueryTextListener searchViewTextListener;
+
     {
         try {
             serviceKey = URLDecoder.decode(serviceKey_origin, "UTF-8");
@@ -60,10 +65,11 @@ public class MapPharmacyListActivity extends Fragment {
 
         mapButton = (Button) view.findViewById(R.id.to_map_pharmacy_button);
 
+        searchView = view.findViewById(R.id.pharmacy_list_search);
+
         pharmacyActivity = new MapPharmacyActivity();
 
         fragmentManager = getParentFragmentManager();
-
 
         cl = new View.OnClickListener() {
             @Override
@@ -115,7 +121,7 @@ public class MapPharmacyListActivity extends Fragment {
                 @Override
                 public void onResponse(Call<ResponseClass> call, Response<ResponseClass> response) {
                     if (response.isSuccessful()) {
-                          Log.e("약국", "response=" + response.code() + " Total=" + response.body().getBody().getTotalCount());
+                        Log.e("약국", "response=" + response.code() + " Total=" + response.body().getBody().getTotalCount());
                         for(ItemClass item : response.body().getBody().getItems().getItem()) {
                             Log.e("약국", item.getYadmNm());
                             adapter.addItem(new Pharmacy(item.getYadmNm(), item.getAddr(), item.getTelno(), item.getXPos(), item.getYPos()));
@@ -132,6 +138,47 @@ public class MapPharmacyListActivity extends Fragment {
         } catch (Exception e) {
             Log.e("약국 Exception", e.getMessage());
         }
+
+
+        searchViewTextListener = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+
+                adapter.clearItems();
+                adapter.notifyDataSetChanged();
+
+                service.getPharmacyInfo(serviceKey, s).enqueue(new Callback<ResponseClass>() {
+                    @Override
+                    public void onResponse(Call<ResponseClass> call, Response<ResponseClass> response) {
+                        if (response.isSuccessful()) {
+                            Log.e("약국", "response=" + response.code() + " Total=" + response.body().getBody().getTotalCount());
+                            for(ItemClass item : response.body().getBody().getItems().getItem()) {
+                                Log.e("약국", item.getYadmNm());
+                                adapter.addItem(new Pharmacy(item.getYadmNm(), item.getAddr(), item.getTelno(), item.getXPos(), item.getYPos()));
+                                adapter.notifyItemInserted(adapter.getItemCount());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseClass> call, Throwable t) {
+                        Log.e("약국", "ERROR=" + t.toString());
+                    }
+                });
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        };
+
+        searchView.setOnQueryTextListener(searchViewTextListener);
+
+
+
         return view;
     }
 }

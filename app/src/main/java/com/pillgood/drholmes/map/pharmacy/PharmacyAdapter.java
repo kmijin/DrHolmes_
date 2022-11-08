@@ -65,6 +65,10 @@ public class PharmacyAdapter extends RecyclerView.Adapter<PharmacyAdapter.ViewHo
         this.items = items;
     }
 
+    public void clearItems() {
+        items.clear();
+    };
+
     public Pharmacy getItem(int position) {
         return  items.get(position);
     }

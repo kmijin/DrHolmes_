@@ -8,8 +8,12 @@ import retrofit2.http.Query;
 
 public interface HospitalAPI {
     String baseURL = "http://apis.data.go.kr/B551182/";
-    String getPharmacy = "hospInfoService1/getHospBasisList1";
+    String getHospital = "hospInfoServicev2/getHospBasisList";
 
-    @GET(getPharmacy)
-    Call<ResponseClass> getPharmacyInfo(@Query("serviceKey") String serviceKey);
+    @GET(getHospital)
+    Call<ResponseClass> getHospitalInfo(@Query("serviceKey") String serviceKey);
+
+    @GET(getHospital)
+    Call<ResponseClass> getHospitalInfo(@Query("serviceKey") String serviceKey,
+                                        @Query("emdongNm") String emdongNm);
 }
