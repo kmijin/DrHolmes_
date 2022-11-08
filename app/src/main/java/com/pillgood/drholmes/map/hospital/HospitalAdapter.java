@@ -65,6 +65,10 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.ViewHo
         this.items = items;
     }
 
+    public void clearItems() {
+        items.clear();
+    };
+
     public Hospital getItem(int position) {
         return  items.get(position);
     }

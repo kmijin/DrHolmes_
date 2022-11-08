@@ -14,4 +14,10 @@ public interface PillAPI {
     Call<ResponseClass> getPillInfo(
             @Query("serviceKey") String serviceKey,
             @Query("type") String type);
+
+    @GET("getMdcinGrnIdntfcInfoList01")
+    Call<ResponseClass> getPillInfo(
+            @Query("serviceKey") String serviceKey,
+            @Query("type") String type,
+            @Query("item_name") String itemName);
 }

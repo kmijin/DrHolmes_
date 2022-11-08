@@ -6,16 +6,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".info.InfoActivity">
 
-    <EditText
+    <SearchView
         android:id="@+id/pill_search"
-        android:layout_width="371dp"
-        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/border_search_backgroud"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="검색"
-        app:layout_constraintStart_toStartOf="parent"
+        android:hint="약명을 입력하세요"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:iconifiedByDefault="false" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pill_list_recycle"
