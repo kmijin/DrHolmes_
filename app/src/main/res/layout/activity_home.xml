@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res"
+    xmlns:app2="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,6 +25,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="50px"
+                android:layout_height="50px"
+                android:text="Logout"
+                android:layout_marginLeft="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/health_tip"/>
 
             <TextView
                 android:id="@+id/health_tip"
@@ -98,6 +108,7 @@
                 android:layout_marginEnd="35dp"
                 android:text="   19:00         루카스트    1 정"
                 android:textSize="23dp" />
+
         </LinearLayout>
     </ScrollView>
 

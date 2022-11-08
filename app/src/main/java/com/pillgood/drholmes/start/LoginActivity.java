@@ -25,9 +25,13 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -53,6 +57,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private GoogleApiClient googleApiClient;
     // 구글 로그인 결과 코드 : 값 반환을 위해
     private static final int REQ_SIGN_GOOGLE = 100;
+    //현재 로그인 된 유저 정보를 담을 변수
+    private FirebaseUser currentUser;
 
 
     @Override
@@ -98,6 +104,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 //로그인 요청
                 String strEmail = emailText.getText().toString();
                 String strPwd = passwordText.getText().toString();
+
+                loginStart(strEmail, strPwd);
 
                 mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -185,5 +193,44 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    }
+    public void loginStart(String strEmail, String strPwd){
+        mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Toast.makeText(LoginActivity.this,"mAuth. onComplete 함수" ,Toast.LENGTH_SHORT).show();
+                if (!task.isSuccessful()) {
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthInvalidUserException e) {
+                        Toast.makeText(LoginActivity.this,"존재하지 않는 id 입니다." ,Toast.LENGTH_SHORT).show();
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        Toast.makeText(LoginActivity.this,"이메일 형식이 맞지 않습니다." ,Toast.LENGTH_SHORT).show();
+                    } catch (FirebaseNetworkException e) {
+                        Toast.makeText(LoginActivity.this,"Firebase NetworkException" ,Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(LoginActivity.this,"Exception" ,Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    currentUser = mFirebaseAuth.getCurrentUser();
+
+                    Toast.makeText(LoginActivity.this, "로그인 성공" + "/" + currentUser.getEmail() + "/" + currentUser.getUid() ,Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+                }
+            }
+        });
+    }
+    //로그아웃 안했으면, 즉 로그인 되어있으면 자동으로 메인페이지로 이동시키기
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        currentUser = mFirebaseAuth.getCurrentUser();
+        if(currentUser != null){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
     }
 }

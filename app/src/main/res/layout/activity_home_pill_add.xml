@@ -60,7 +60,7 @@
 
                 <TextView
                     android:id="@+id/medicine_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="246dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="35dp"
                     android:layout_marginEnd="35dp"
@@ -68,13 +68,12 @@
                     android:textColor="#000"
                     android:textSize="35sp" />
 
-                <!--이거 왜 안뜨지,,? 좀 더 알아보고 넣기..-->
                 <Switch
                     android:id="@+id/medicine_onoff"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="200dp"
-                    android:layout_weight="1" />
+                    android:layout_marginEnd="35dp" />
+
             </LinearLayout>
             <!-- 복용시간 타임피커 -->
             <TimePicker
