@@ -1,7 +1,6 @@
 package com.pillgood.drholmes.home;
 
 import android.content.Intent;
-import android.media.MediaParser;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.pillgood.drholmes.MainActivity;
 import com.pillgood.drholmes.R;
-import com.pillgood.drholmes.noti.PillAddActivity;
 import com.pillgood.drholmes.start.LoginActivity;
 
 public class HomeActivity extends Fragment {
@@ -47,7 +44,7 @@ public class HomeActivity extends Fragment {
         btn_pilladd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), PillAddActivity.class);
+                Intent intent = new Intent(getActivity(), PillAdd.class);
                 startActivity(intent);
             }
         });

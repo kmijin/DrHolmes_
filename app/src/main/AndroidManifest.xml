@@ -56,7 +56,7 @@
 
         </activity>
 
-        <activity android:name=".noti.PillAddActivity"
+        <activity android:name=".home.PillAdd"
             android:exported="true">
 
         </activity>
