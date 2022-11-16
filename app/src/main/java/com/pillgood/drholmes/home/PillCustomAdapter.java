@@ -34,10 +34,10 @@ public class PillCustomAdapter extends RecyclerView.Adapter<PillCustomAdapter.Pi
     @Override
     public void onBindViewHolder(@NonNull PillCustomViewHolder holder, int position) {
         PillModel model = arrayList.get(position);
-        holder.hour.setText(arrayList.get(position).getPillHour());
-        holder.minute.setText(arrayList.get(position).getPillMinute());
+        holder.pillHour.setText(arrayList.get(position).getPillHour());
+        holder.pillMinute.setText(arrayList.get(position).getPillMinute());
         holder.pillName.setText(arrayList.get(position).getPillName());
-        holder.cnt.setText(arrayList.get(position).getPillCount());
+        holder.pillCount.setText(arrayList.get(position).getPillCount());
     }
 
     @Override
@@ -48,16 +48,17 @@ public class PillCustomAdapter extends RecyclerView.Adapter<PillCustomAdapter.Pi
     public class PillCustomViewHolder extends RecyclerView.ViewHolder {
 
         TextView pillName;
-        TextView hour;
-        TextView minute;
-        TextView cnt;
+        TextView pillHour;
+        TextView pillMinute;
+        TextView pillCount;
 
         public PillCustomViewHolder(@NonNull View itemView) {
             super(itemView);
+
             this.pillName = itemView.findViewById(R.id.pillName);
-            this.hour = itemView.findViewById(R.id.pillHour);
-            this.minute = itemView.findViewById(R.id.pillMinute);
-            this.cnt = itemView.findViewById(R.id.pillCnt);
+            this.pillHour = itemView.findViewById(R.id.pillHour);
+            this.pillMinute = itemView.findViewById(R.id.pillMinute);
+            this.pillCount = itemView.findViewById(R.id.pillCnt);
         }
     }
 }
