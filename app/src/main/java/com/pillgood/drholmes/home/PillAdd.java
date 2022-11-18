@@ -98,9 +98,9 @@ public class PillAdd extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "알람 추가", Toast.LENGTH_LONG).show();
                 Map<String, Object> pill = new HashMap<>();
-                pill.put("hour", h + "시");
-                pill.put("minute", m + "분");
-                pill.put("count", count + "정");
+                pill.put("pillHour", h + "시");
+                pill.put("pillMinute", m + "분");
+                pill.put("pillCount", count + "정");
                 pill.put("pillName", write_medicine_name.getText().toString());
                 mFirebaseFirestore.collection("Pills")
                         .add(pill)

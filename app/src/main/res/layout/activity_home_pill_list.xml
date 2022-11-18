@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/pill_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"/>
+
+        <TextView
+            android:id="@+id/pillHour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="00시"
+            android:textSize="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp" />
+        <TextView
+            android:id="@+id/pillMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="00분"
+            android:textSize="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"  />
+        <TextView
+            android:id="@+id/pillName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="타이레놀"
+            android:textSize="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp" />
+        <TextView
+            android:id="@+id/pillCnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="3정"
+            android:textSize="25dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"  />
+    </LinearLayout>
+</LinearLayout>
