@@ -16,11 +16,23 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
-                <View
-                    android:id="@+id/View2"
+<!--                <View-->
+<!--                    android:id="@+id/View2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="250dp"-->
+<!--                    android:background="#AAAAAA"/>-->
+
+                <fragment
+                    android:id="@+id/mapview_hospital_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:background="#AAAAAA"/>
+                    android:layout_height="300dp"
+                    android:name="com.naver.maps.map.MapFragment"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"/>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -35,9 +47,8 @@
             <LinearLayout
                 android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="15dp"
                 android:orientation="vertical"
                 android:padding="10dp"
                 android:background="#FFFFFF">
@@ -61,33 +72,6 @@
                     android:textColor="#000000"/>
 
                 <TextView
-                    android:id="@+id/hospital_detail_parking"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="주차 가능(유료)"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#000000"/>
-
-                <TextView
-                    android:id="@+id/hospital_detail_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="월요일 09:00 ~ 20:00  V"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#000000"/>
-
-                <TextView
-                    android:id="@+id/hospital_detail_url"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="http://www.naver.com/"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#0099FF"/>
-
-                <TextView
                     android:id="@+id/hospital_detail_tel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -108,279 +92,6 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginStart="300dp"
                 android:text="길찾기" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical"
-                android:padding="10dp"
-                android:background="#FFFFFF">
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="구분"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#008800"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="의원"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#000000"/>
-
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="진료과목"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#008800"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="정형외과, 재활의학과"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#000000"/>
-
-                <TextView
-                    android:id="@+id/textView20"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="진료정보(건강보험심사평가원)"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#008800"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="의사수 총 2명 (전문의 2명)"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#000000"/>
-
-                <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TableRow
-                        android:background="#DDDDDD">
-                        <TextView
-                            android:id="@+id/textView22"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="진료과목"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/textView23"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="전문의"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000"/>
-                    </TableRow>
-
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/textView24"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="정형외과"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/textView25"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="2"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000"/>
-                    </TableRow>
-
-                </TableLayout>
-
-                <TextView
-                    android:id="@+id/textView26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타인력정보"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#008800"
-                    android:textStyle="bold"/>
-
-                <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TableRow
-                        android:background="#DDDDDD">
-                        <TextView
-                            android:id="@+id/textView27"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="종류"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/textView28"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="인원"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000"/>
-                    </TableRow>
-
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/textView29"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="물리치료사"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/textView30"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000"/>
-                    </TableRow>
-
-                </TableLayout>
-
-                <TextView
-                    android:id="@+id/textView31"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="의료장비"
-                    android:textSize="18sp"
-                    android:layout_margin="5dp"
-                    android:textColor="#008800"
-                    android:textStyle="bold"/>
-
-                <TableLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TableRow
-                        android:background="#DDDDDD">
-                        <TextView
-                            android:id="@+id/textView32"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="종류"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/textView33"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="개수"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000"/>
-                    </TableRow>
-
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/textView34"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="골밀도검사기"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000" />
-
-                        <TextView
-                            android:id="@+id/textView35"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textSize="18sp"
-                            android:layout_margin="5dp"
-                            android:textColor="#000000"/>
-                    </TableRow>
-                </TableLayout>
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/linearLayout2"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="15dp">
-            <TextView
-                android:id="@+id/textView36"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="3.8 점"
-                android:textSize="30sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/textView36" />
-
-            <TextView
-                android:id="@+id/textView37"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="23"
-                android:textSize="30sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-<!--                <GridLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    app:layout_constraintTop_toBottomOf="textView36"-->
-<!--                    app:layout_constraintStart_toStartOf="parent">-->
-
-<!--                    <ImageView-->
-<!--                        android:id="@+id/imageView3"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        app:srcCompat="@drawable/ic_launcher_background" />-->
-<!--                </GridLayout>-->
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
