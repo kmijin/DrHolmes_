@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +17,25 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
 
+import com.naver.maps.geometry.LatLng;
+import com.naver.maps.map.CameraPosition;
+import com.naver.maps.map.LocationSource;
+import com.naver.maps.map.MapFragment;
+import com.naver.maps.map.NaverMap;
+import com.naver.maps.map.NaverMapOptions;
+import com.naver.maps.map.OnMapReadyCallback;
+import com.naver.maps.map.overlay.Marker;
+import com.naver.maps.map.util.FusedLocationSource;
 import com.pillgood.drholmes.R;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
 
-public class MapHospitalDetailActivity extends Fragment {
+public class MapHospitalDetailActivity extends Fragment implements OnMapReadyCallback {
 
     View view;
     String TAG = "MapHospitalDetailActivity";
@@ -35,12 +46,28 @@ public class MapHospitalDetailActivity extends Fragment {
     String hospitalName, hospitalAddress, hospitalTel;
     Double hospitalXPos, hospitalYPos;
 
+    NaverMap naverMap;
+    FusedLocationSource locationSource;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_map_hospital_detail, container, false);
 
         btnFindWay = view.findViewById(R.id.btnFindWayHospital);
+
+        FragmentManager fm = getChildFragmentManager();
+        MapFragment mapFragment = (MapFragment) fm.findFragmentById(R.id.mapview_hospital_detail);
+
+        if (mapFragment == null) {
+            mapFragment = MapFragment.newInstance();
+            fm.beginTransaction().add(R.id.mapview_hospital_detail, mapFragment).commit();
+        }
+
+        locationSource = new FusedLocationSource(this.getActivity(), 1000);
+
+        mapFragment.getMapAsync(this);
+
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,5 +111,21 @@ public class MapHospitalDetailActivity extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onMapReady(@NonNull NaverMap naverMap) {
+        this.naverMap = naverMap;
+        naverMap.setLocationSource(locationSource);
+
+        naverMap.setCameraPosition(new CameraPosition(new LatLng(hospitalYPos, hospitalXPos), 15));
+        Log.i("HOSPITAL", hospitalXPos.toString());
+
+        Marker marker = new Marker();
+        marker.setPosition(new LatLng(hospitalYPos, hospitalXPos));
+        marker.setCaptionText(hospitalName);
+        marker.setMap(naverMap);
+
+
     }
 }

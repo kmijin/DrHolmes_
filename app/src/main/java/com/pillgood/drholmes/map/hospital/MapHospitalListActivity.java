@@ -15,10 +15,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.naver.maps.map.util.FusedLocationSource;
 import com.pillgood.drholmes.R;
 import com.pillgood.drholmes.api.HospitalAPI;
-import com.pillgood.drholmes.api.pharmacy.ItemClass;
-import com.pillgood.drholmes.api.pharmacy.ResponseClass;
+import com.pillgood.drholmes.api.hospital.ItemClass;
+import com.pillgood.drholmes.api.hospital.ResponseClass;
 import com.tickaroo.tikxml.TikXml;
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory;
 
@@ -46,6 +47,8 @@ public class MapHospitalListActivity extends Fragment {
     String serviceKey_origin = "J%2FS0JBdWnrQa9KR69M9AJHWjQwTch0%2F20l8%2BdpQ5wH8sMuKGfYlihZjIxwDCPjVBF9JUeaTeJr1xEhbDvcL%2BWw%3D%3D";
     String serviceKey;
 
+    FusedLocationSource locationSource;
+
     SearchView searchView;
     SearchView.OnQueryTextListener searchViewTextListener;
 
@@ -70,6 +73,9 @@ public class MapHospitalListActivity extends Fragment {
 
         fragmentManager = getParentFragmentManager();
 
+        locationSource = new FusedLocationSource(this.getActivity(), 1000);
+
+
         cl = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,14 +99,14 @@ public class MapHospitalListActivity extends Fragment {
         adapter.setOnItemClickListener(new HospitalAdapter.OnPharmacyItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Hospital pharmacy = adapter.getItem(position);
+                Hospital hospital = adapter.getItem(position);
 
                 Bundle bundle = new Bundle();
-                bundle.putString("hospital_name", pharmacy.getName());
-                bundle.putString("hospital_address", pharmacy.getAddress());
-                bundle.putString("hospital_tel", pharmacy.getTel());
-                bundle.putDouble("hospital_XPos", pharmacy.getXPos());
-                bundle.putDouble("hospital_YPos", pharmacy.getYPos());
+                bundle.putString("hospital_name", hospital.getName());
+                bundle.putString("hospital_address", hospital.getAddress());
+                bundle.putString("hospital_tel", hospital.getTel());
+                bundle.putDouble("hospital_XPos", hospital.getXPos());
+                bundle.putDouble("hospital_YPos", hospital.getYPos());
 
                 fragmentManager.setFragmentResult("hospital_selected", bundle);
                 fragmentManager.beginTransaction().replace(R.id.fragment_tab_map, hospitalDetailActivity).commit();
