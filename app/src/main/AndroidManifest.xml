@@ -17,6 +17,7 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" tools:node="remove"/>
 
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
 
 
     <application
@@ -86,6 +87,8 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="e7998a11fa68c523abd472f25fe01e6f" />
+
+        <receiver android:name=".noti.AlertReceiver"/>
 
     </application>
 

@@ -2,6 +2,9 @@ package com.pillgood.drholmes.home;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +31,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pillgood.drholmes.MainActivity;
 import com.pillgood.drholmes.R;
+import com.pillgood.drholmes.noti.AlertReceiver;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,13 +74,35 @@ public class PillAdd extends AppCompatActivity {
         medicine_timepicker.setIs24HourView(true);
 
         medicine_timepicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            Calendar c = Calendar.getInstance();
             @Override
             public void onTimeChanged(TimePicker timePicker, int hour, int minute) {
                 h = hour;
                 m = minute;
-            }
-        });
 
+                Log.d(TAG, "## onTimeSet ## ");
+                Calendar c = Calendar.getInstance();
+
+                c.set(Calendar.HOUR_OF_DAY, h);
+                c.set(Calendar.MINUTE, m);
+                c.set(Calendar.SECOND, 0);
+
+                //알람설정정
+                startAlarm(c);
+            }
+//            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//
+//                Log.d(TAG, "## onTimeSet ## ");
+//                Calendar c = Calendar.getInstance();
+//
+//                c.set(Calendar.HOUR_OF_DAY, hourOfDay);
+//                c.set(Calendar.MINUTE, minute);
+//                c.set(Calendar.SECOND, 0);
+//
+//                //알람설정정
+//                startAlarm(c);
+//            }
+        });
 
         count_minus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,5 +156,24 @@ public class PillAdd extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    /**
+     * 알람 시작
+     * @param c 시간
+     */
+    private void startAlarm( Calendar c) {
+        Log.d(TAG, "## startAlarm ## ");
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        //PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        if(c.before(Calendar.getInstance())){
+            c.add(Calendar.DATE, 1);
+        }
+
+        //RTC_WAKE : 지정된 시간에 기기의 절전 모드를 해제하여 대기 중인 인텐트를 실행
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
 }
