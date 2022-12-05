@@ -1,11 +1,16 @@
 package com.pillgood.drholmes.noti;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
@@ -14,16 +19,28 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.pillgood.drholmes.MainActivity;
 import com.pillgood.drholmes.R;
+import com.pillgood.drholmes.home.PillModel;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MyFirebaseMessaging extends FirebaseMessagingService {
 
@@ -56,6 +73,15 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
 //        notificationManager.notify(1, notification);
 //    }
 //
+
+    private FirebaseFirestore db;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<PillModel> arrayList;
+    private ProgressDialog progressDialog;
+
+
+
     @Override
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
@@ -64,6 +90,32 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
+    }
+
+    private void EventChangeListener() {
+        db.collection("Pills")
+                .orderBy("pillName", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null) {
+                            if(progressDialog.isShowing()){
+                                progressDialog.dismiss();
+                            }
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            if (dc.getType() == DocumentChange.Type.ADDED) {
+                                arrayList.add(dc.getDocument().toObject(PillModel.class));
+                            }
+                            adapter.notifyDataSetChanged();
+                            if (progressDialog.isShowing()) {
+                                progressDialog.dismiss();
+                            }
+                        }
+                    }
+                });
     }
 
     private void sendNotification(String messageBody) {
@@ -144,6 +196,35 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
 //        } catch (NullPointerException nullException) {
 //            Toast.makeText(getApplicationContext(), "알림에 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
 //            Log.e("error Notify", nullException.toString());
+//        }
+//
+//    }
+//    void diaryNotification(Calendar calendar)
+//    {
+//        Log.d(TAG, "## AlarmManager ## ");
+//
+//        Boolean dailyNotify = true; // 매일 반복되는 알람의 조건 변수(항상울림)
+//
+//        PackageManager pm = this.getPackageManager();
+//        //ComponentName receiver = new ComponentName(this, DeviceBootReceiver.class);
+//        Intent alarmIntent = new Intent(this, AlertReceiver.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, alarmIntent, 0);
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//
+//
+//        // 매일 울리기 위한 부분
+//        if (dailyNotify) {
+//            if (alarmManager != null) {
+//                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+//
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+//                }
+//            }
+//
+//            // 부팅 후 실행되는 리시버 사용가능하게 설정
+//            //pm.setComponentEnabledSetting(receiver, PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+//
 //        }
 //
 //    }
